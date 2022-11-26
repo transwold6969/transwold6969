@@ -22,11 +22,11 @@
     <a class="navbar-brand h2 text-light" href="/">
       HiHub
     </a>
+    <span class="text-right dtn btn btn-outline-secondary">🌗</span>
+  
   </div>
-<div class="mode">
-        Dark mode:            
-        <span class="change btn btn-outline-secondary">OFF</span>
-    </div>
+  
+        
 </nav>
 </div>
     <div class="preloader">
@@ -49,16 +49,10 @@
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <script src="/script.js"> </script>
 <script>
-
- $( ".change" ).on("click", function() {
-            if( $( "body" ).hasClass( "dark" )) {
-                darkmode.toggle();
-                $( ".change" ).text( "OFF" );
-            } else {
-                darkmode.toggle();
-                $( ".change" ).text( "ON" );
-            }
-        });
+const darkmode =  new Darkmode();
+ $( ".dtn").click(function() {
+darkmode.toggle();
+});
 
   </script>
   </body>
