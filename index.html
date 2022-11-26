@@ -23,6 +23,10 @@
       HiHub
     </a>
   </div>
+<div class="mode">
+        Dark mode:            
+        <span class="change btn btn-outline-secondary">OFF</span>
+    </div>
 </nav>
 </div>
     <div class="preloader">
@@ -45,25 +49,17 @@
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 <script src="/script.js"> </script>
 <script>
-  function addDarkmodeWidget() {
-    const options = {
-  bottom: '32px', 
-  right: '32px',
-  left: 'unset',
-  mixColor: '#fff',
-  backgroundColor: '#fff', 
-  saveInCookies: true, 
-  label: '🌓', 
-  autoMatchOsTheme: true,
-  buttonColorDark: '#100f2c',
-  buttonColorLight: '#fff',
-}
-  const darkmode = new Darkmode(options);
-  darkmode.showWidget();
 
+ $( ".change" ).on("click", function() {
+            if( $( "body" ).hasClass( "dark" )) {
+                darkmode.toggle();
+                $( ".change" ).text( "OFF" );
+            } else {
+                darkmode.toggle();
+                $( ".change" ).text( "ON" );
+            }
+        });
 
-  }
-  window.addEventListener('load', addDarkmodeWidget);
-</script>
+  </script>
   </body>
 </html>
