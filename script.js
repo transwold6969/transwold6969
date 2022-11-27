@@ -13,7 +13,7 @@ function ie(url,title,id) {
 };
 
 function createHome(pg) { 
-let url= "https://www.eporner.com/api/v2/video/search/?query="+q+"&per_page=10&lq=0&order=latest&gay=0&page="+pg;
+  let url= "https://www.eporner.com/api/v2/video/search/?query="+q+"&per_page=10000&lq=0&order=latest&gay=0&page="+pg;
   console.log(url)
 fetch(url)   
 .then(resp=> resp.json())       
@@ -40,7 +40,7 @@ createHome(i);
 
 $(window).scroll(function() {
    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-   $("#v").append(`<div class="text-center preloader" >
+   $("#v").append(`<div class="text-center  preloader" >
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
@@ -62,7 +62,7 @@ if($("#inp").val().length > 2){
     console.log(q);
     $('#v').empty();
   
-  $("#v").append(`<div class="text-center preloader" ><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span>
+  $("#v").append(`<div class="text-center preloader mt-5" ><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span>
   </div>
 </div>`);
     i =1;
