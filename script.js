@@ -1,42 +1,38 @@
 let pp = 2;
 let i = 1;
+let q='';
 
-function ie(url,title) { 
-  console.log(url);
+function ie(url,title,id) { 
  $("#modal_div").html(`
-<div id="Modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-<!-- Modal content-->
-<div class="modal-content">
-<div class="modal-header text-center">
- <p>${title}</p>
-</div>
-  <div class="modal-body">
-    <img src="${url}" class="img-thumbnail" alt="${title}">
-  </div>  
-<div class="modal-footer">
- <a href="${url}" class="btn btn-danger" download>Download</a>
-</div>
-</div>
-  </div>
-</div>
+<div id="Modal" class="modal fade" role="dialog" style="width:100%;height:60vh;" >
+ <div class="modal-dialog"><div class="modal-content">
+<h5 class="modal-title bg-dark text-white">${title}</h5> <iframe class="bg-success responsive-iframe" src="https://www.eporner.com/embed/${id}/"style="width:auto;height:35vh;">Error loading Video.</iframe></div><div class="modal-footer"><button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button></div></div></div>
 `);
+  
  $("#Modal").modal('show');
 };
 
 function createHome(pg) { 
-fetch("https://www.eporner.com/api/v2/video/search/?per_page=200&lq=0    &order=latest&gay=0&page="+pg )    .then(resp=> resp.json())       .then((data) => {            $(".preloader").remove();            const videos = data.videos;
+let url= "https://www.eporner.com/api/v2/video/search/?query="+q+"&per_page=10&lq=0&order=latest&gay=0&page="+pg;
+  console.log(url)
+fetch(url)   
+.then(resp=> resp.json())       
+.then((data) => {            $(".preloader").remove();            const videos = data.videos;
  videos.map(function(video) {
   $("#v").append(`
       <div class="col-sm-3 py-3 col-md-3 col-lg-3">
-       <img class="img-fluid" src="${video.default_thumb.src}" alt="${video.title}" onClick="ie('${video.default_thumb.src}','${video.title}');">
+       <img class="img-fluid" src="${video.default_thumb.src}" alt="${video.title}" onClick="ie('${video.default_thumb.src}','${video.title}','${video.id}');">
+       <a href="${video.default_thumb.src}" class="btn btn-outline-danger darkmode-ignore" target="__blank">Download Image</a>
+       
+  <button class="btn btn-outline-secondary darkmode-ignore" onClick="ie('${video.default_thumb.src}','${video.title}','${video.id}');">Watch▶️</button>
   </div>
    `);
-        
+    
  });   
-});
-      
+})
+.catch(error => { $(".preloader").remove();  
+  $('#v').html("<h2 class='mt-5 display-3'>Sorry,for the inconvenience.An error occured while loading videos.</h2>");});
+ 
 };
 
 createHome(i);
@@ -57,7 +53,25 @@ setInterval(function () {
   createHome(i);
    ++i
    
-}, 5000);
+}, 50000);
+$("#inp").keyup(function(){
+
+  
+if($("#inp").val().length > 2){
+    q =$("#inp").val();
+    console.log(q);
+    $('#v').empty();
+  
+  $("#v").append(`<div class="text-center preloader" ><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span>
+  </div>
+</div>`);
+    i =1;
+  createHome(i);
+    ++i;
+  
+
+  
+  };});
 
 
 
