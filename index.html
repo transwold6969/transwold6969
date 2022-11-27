@@ -14,30 +14,40 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" />
     
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/css/magnify.min.css">
+ <style>
+    
+ body{
+    overflow-wrap: break-word;
+    }
+ </style>
+ 
   </head>
 <body>
 
- <nav class="navbar navbar-dark bg-dark ">
-  <div class="container">
+  <nav class="navbar fixed-top navbar-dark bg-dark">
     <a class="navbar-brand h2 text-light" href="/">
-      HiHub
+    &nbsp; &nbsp;   HiHub
     </a>
+    <form class="d-flex">
+      <input class="form-control"  id="inp" type="search" placeholder="Search">
+      
+    </form>
     <span class="text-right dtn btn btn-outline-secondary">🌗</span>
   
-  </div>
   
-        
-</nav>
-</div>
-    <div class="preloader">
+  
+  </nav>
+  
+  <div class="preloader mt-5 text-center">
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
     </div>
+  <div class="container">
+<div class="row my-5" id="v"></div>
+</div>
 
 <div id="modal_div"></div>
-<div class="row" id="v">
-</div>
     
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
